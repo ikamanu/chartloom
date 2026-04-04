@@ -9,6 +9,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://chartloom.kamanu.io"),
   title: "ChartLoom — Clinical Chart Audit",
   description: "A beautiful, print-accurate daily chart audit form system",
   openGraph: {
