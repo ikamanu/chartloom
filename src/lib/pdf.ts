@@ -1,4 +1,5 @@
-import { chromium } from 'playwright'
+import puppeteer from 'puppeteer-core'
+import chromium from '@sparticuz/chromium'
 import { AUDIT_TEMPLATE } from './audit-template'
 import type { AuditRecord } from './schemas'
 
@@ -28,7 +29,7 @@ export function buildPrintHtml(audit: AuditRecord): string {
         const isSelected = selected === opt
         const label = opt === 'na' ? 'N/A' : opt === 'yes' ? 'Yes' : 'No'
         return `<div class="option-row">
-          <span class="checkbox ${isSelected ? 'checked' : ''}">${isSelected ? '✓' : ''}</span>
+          <span class="checkbox ${isSelected ? 'checked' : ''}">${isSelected ? '&#10003;' : ''}</span>
           <span class="option-label ${isSelected ? 'selected' : ''}">${label}</span>
         </div>`
       })
@@ -104,16 +105,34 @@ export function buildPrintHtml(audit: AuditRecord): string {
 </html>`
 }
 
+async function getBrowser() {
+  const isDev = process.env.NODE_ENV === 'development'
+
+  if (isDev) {
+    return puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      defaultViewport: { width: 1920, height: 1080 },
+      executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+      headless: true,
+    })
+  }
+
+  return puppeteer.launch({
+    args: chromium.args,
+    defaultViewport: { width: 1920, height: 1080 },
+    executablePath: await chromium.executablePath(),
+    headless: 'shell',
+  })
+}
+
 export async function generatePdf(audit: AuditRecord): Promise<Buffer> {
   const html = buildPrintHtml(audit)
 
-  const browser = await chromium.launch({ headless: true })
-  const context = await browser.newContext()
-  const page = await context.newPage()
+  const browser = await getBrowser()
 
-  await page.setContent(html, { waitUntil: 'networkidle' })
+  const page = await browser.newPage()
+  await page.setContent(html, { waitUntil: 'networkidle0' })
   await page.evaluate(() => document.fonts.ready)
-  await page.waitForTimeout(500)
 
   const pdf = await page.pdf({
     format: 'Letter',
