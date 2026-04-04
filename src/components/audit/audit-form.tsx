@@ -191,15 +191,6 @@ export function AuditForm({ auditId }: Props) {
             >
               Preview
             </button>
-            <button
-              type="button"
-              onClick={handleExportPdf}
-              disabled={!currentId}
-              className="px-4 py-1.5 text-sm font-medium text-white bg-blue-600 rounded-md
-                hover:bg-blue-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              Export PDF
-            </button>
           </div>
         </div>
       </div>

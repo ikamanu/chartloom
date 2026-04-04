@@ -67,7 +67,7 @@ export function AuditPreviewDocument({ audit, forPdf }: Props) {
       className={
         forPdf
           ? 'bg-white text-slate-900 font-sans'
-          : 'bg-white text-slate-900 font-sans max-w-[8.5in] mx-auto shadow-lg rounded-sm'
+          : 'bg-white text-slate-900 font-sans max-w-[8.5in] mx-auto shadow-lg rounded-sm print:shadow-none print:rounded-none'
       }
       style={forPdf ? { width: '100%' } : undefined}
     >

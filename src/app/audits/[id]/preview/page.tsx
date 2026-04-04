@@ -78,28 +78,10 @@ export default function PreviewAuditPage({ params }: { params: Promise<{ id: str
             </button>
             <button
               onClick={() => window.print()}
-              className="px-4 py-1.5 text-sm font-medium text-blue-700 border border-blue-300 rounded-md
-                hover:bg-blue-50 transition-colors"
-            >
-              Print
-            </button>
-            <button
-              onClick={async () => {
-                if (!audit) return
-                const res = await fetch(`/audits/${id}/pdf`, {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify(audit),
-                })
-                if (!res.ok) return alert('PDF generation failed')
-                const blob = await res.blob()
-                const url = URL.createObjectURL(blob)
-                window.open(url, '_blank')
-              }}
               className="px-4 py-1.5 text-sm font-medium text-white bg-blue-600 rounded-md
                 hover:bg-blue-700 transition-colors"
             >
-              Export PDF
+              Print as PDF
             </button>
           </div>
         </div>
