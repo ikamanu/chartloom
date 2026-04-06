@@ -21,7 +21,7 @@ export function AuditQuestionRowEditor({
   error,
 }: Props) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1fr_160px_1fr] gap-4 py-5 px-5 border-b border-slate-200 last:border-b-0">
+    <div className="grid grid-cols-1 lg:grid-cols-[2fr_88px_3fr] gap-4 py-5 px-5 border-b border-slate-200 last:border-b-0">
       {/* Parameters */}
       <div className="flex flex-col gap-1">
         <p className="text-sm font-medium text-slate-900 leading-snug">
@@ -54,8 +54,8 @@ export function AuditQuestionRowEditor({
           value={comment}
           onChange={(e) => onCommentChange(e.target.value)}
           placeholder="Comments..."
-          rows={2}
-          className="w-full px-3 py-2 border border-slate-200 rounded-md bg-slate-50/50 text-sm text-slate-800
+          rows={4}
+          className="w-full h-full min-h-[100px] px-3 py-2 border border-slate-200 rounded-md bg-slate-50/50 text-sm text-slate-800
             focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400
             transition-colors resize-y placeholder:text-slate-400"
           aria-label={`Comments for question ${question.order}`}

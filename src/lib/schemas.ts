@@ -21,6 +21,7 @@ export const auditRecordSchema = z.object({
   id: z.string(),
   header: auditHeaderSchema,
   responses: z.array(auditResponseSchema),
+  additionalNotes: z.string().optional().default(''),
   status: z.enum(['draft', 'completed']),
   createdAt: z.string(),
   updatedAt: z.string(),

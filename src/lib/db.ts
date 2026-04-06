@@ -61,6 +61,7 @@ export function updateAudit(
   updates: {
     header?: Partial<AuditHeader>
     responses?: AuditResponse[]
+    additionalNotes?: string
     status?: 'draft' | 'completed'
   }
 ): AuditRecord | null {
@@ -73,6 +74,9 @@ export function updateAudit(
   }
   if (updates.responses) {
     record.responses = updates.responses
+  }
+  if (updates.additionalNotes !== undefined) {
+    record.additionalNotes = updates.additionalNotes
   }
   if (updates.status) {
     record.status = updates.status

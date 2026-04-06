@@ -68,9 +68,9 @@ export default function PrintPage({ params }: { params: Promise<{ id: string }> 
         <table>
           <thead>
             <tr>
-              <th style={{ width: '60%' }}>Parameters</th>
-              <th style={{ width: '16%' }}>Options</th>
-              <th style={{ width: '24%' }}>Comments</th>
+              <th style={{ width: '35%' }}>Parameters</th>
+              <th style={{ width: '13%' }}>Options</th>
+              <th style={{ width: '52%' }}>Comments</th>
             </tr>
           </thead>
           <tbody>
@@ -107,6 +107,13 @@ export default function PrintPage({ params }: { params: Promise<{ id: string }> 
             })}
           </tbody>
         </table>
+
+        {audit.additionalNotes && (
+          <div className="additional-notes">
+            <h2 className="additional-notes-title">Additional Notes</h2>
+            <p className="additional-notes-content">{audit.additionalNotes}</p>
+          </div>
+        )}
       </body>
     </html>
   )
@@ -194,10 +201,10 @@ const printStyles = `
   }
 
   td {
-    padding: 6px 8px;
+    padding: 5px 6px;
     border: 1px solid #94a3b8;
     vertical-align: top;
-    font-size: 10.5px;
+    font-size: 9.5px;
   }
 
   tr {
@@ -206,15 +213,16 @@ const printStyles = `
 
   .prompt {
     font-weight: 500;
-    line-height: 1.35;
+    line-height: 1.3;
+    font-size: 9.5px;
   }
 
   .guidance {
     font-style: italic;
-    font-size: 9.5px;
+    font-size: 8.5px;
     color: #475569;
-    margin-top: 3px;
-    line-height: 1.35;
+    margin-top: 2px;
+    line-height: 1.3;
     white-space: pre-line;
   }
 
@@ -251,7 +259,7 @@ const printStyles = `
   }
 
   .option-label {
-    font-size: 10.5px;
+    font-size: 9.5px;
     color: #475569;
   }
 
@@ -263,5 +271,23 @@ const printStyles = `
   .comment-cell {
     white-space: pre-wrap;
     font-size: 10.5px;
+  }
+
+  .additional-notes {
+    margin-top: 12px;
+    border: 1px solid #64748b;
+    padding: 8px 10px;
+  }
+
+  .additional-notes-title {
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .additional-notes-content {
+    font-size: 10.5px;
+    white-space: pre-wrap;
+    line-height: 1.4;
   }
 `

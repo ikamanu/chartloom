@@ -66,17 +66,20 @@ export function buildPrintHtml(audit: AuditRecord): string {
     table { width: 100%; border-collapse: collapse; border: 1px solid #64748b; margin-top: 8px; }
     thead { display: table-header-group; }
     th { padding: 6px 8px; font-size: 11px; font-weight: 700; text-align: left; border: 1px solid #64748b; background: white; }
-    td { padding: 6px 8px; border: 1px solid #94a3b8; vertical-align: top; font-size: 10.5px; }
+    td { padding: 5px 6px; border: 1px solid #94a3b8; vertical-align: top; font-size: 9.5px; }
     tr { break-inside: avoid; }
-    .prompt { font-weight: 500; line-height: 1.35; }
-    .guidance { font-style: italic; font-size: 9.5px; color: #475569; margin-top: 3px; line-height: 1.35; }
+    .prompt { font-weight: 500; line-height: 1.3; font-size: 9.5px; }
+    .guidance { font-style: italic; font-size: 8.5px; color: #475569; margin-top: 2px; line-height: 1.3; }
     .options { display: flex; flex-direction: column; gap: 2px; }
     .option-row { display: flex; align-items: center; gap: 5px; }
     .checkbox { display: inline-flex; align-items: center; justify-content: center; width: 12px; height: 12px; border: 1.5px solid #64748b; font-size: 9px; line-height: 1; flex-shrink: 0; background: white; }
     .checkbox.checked { background: #1e293b; border-color: #1e293b; color: white; font-weight: 700; }
-    .option-label { font-size: 10.5px; color: #475569; }
+    .option-label { font-size: 9.5px; color: #475569; }
     .option-label.selected { font-weight: 600; color: #0f172a; }
     .comment-cell { white-space: pre-wrap; font-size: 10.5px; }
+    .additional-notes { margin-top: 12px; border: 1px solid #64748b; padding: 8px 10px; }
+    .additional-notes-title { font-size: 11px; font-weight: 700; margin-bottom: 4px; }
+    .additional-notes-content { font-size: 10.5px; white-space: pre-wrap; line-height: 1.4; }
   </style>
 </head>
 <body>
@@ -94,13 +97,17 @@ export function buildPrintHtml(audit: AuditRecord): string {
   <table>
     <thead>
       <tr>
-        <th style="width:60%">Parameters</th>
-        <th style="width:16%">Options</th>
-        <th style="width:24%">Comments</th>
+        <th style="width:35%">Parameters</th>
+        <th style="width:13%">Options</th>
+        <th style="width:52%">Comments</th>
       </tr>
     </thead>
     <tbody>${rows}</tbody>
   </table>
+  ${audit.additionalNotes ? `<div class="additional-notes">
+    <h2 class="additional-notes-title">Additional Notes</h2>
+    <p class="additional-notes-content">${audit.additionalNotes}</p>
+  </div>` : ''}
 </body>
 </html>`
 }

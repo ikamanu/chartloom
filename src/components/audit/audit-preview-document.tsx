@@ -77,13 +77,13 @@ export function AuditPreviewDocument({ audit, forPdf }: Props) {
         <table className="w-full border-collapse border border-slate-400 text-left">
           <thead style={{ display: 'table-header-group' }}>
             <tr className="bg-white">
-              <th className="py-2 px-3 text-sm font-bold text-slate-900 border border-slate-400 w-[60%]">
+              <th className="py-2 px-3 text-sm font-bold text-slate-900 border border-slate-400 w-[35%]">
                 Parameters
               </th>
-              <th className="py-2 px-3 text-sm font-bold text-slate-900 border border-slate-400 w-[16%]">
+              <th className="py-2 px-3 text-sm font-bold text-slate-900 border border-slate-400 w-[13%]">
                 Options
               </th>
-              <th className="py-2 px-3 text-sm font-bold text-slate-900 border border-slate-400 w-[24%]">
+              <th className="py-2 px-3 text-sm font-bold text-slate-900 border border-slate-400 w-[52%]">
                 Comments
               </th>
             </tr>
@@ -102,6 +102,13 @@ export function AuditPreviewDocument({ audit, forPdf }: Props) {
             })}
           </tbody>
         </table>
+
+        {audit.additionalNotes && (
+          <div className="mt-6 border border-slate-400 p-4">
+            <h2 className="text-sm font-bold text-slate-900 mb-2">Additional Notes</h2>
+            <p className="text-sm text-slate-800 whitespace-pre-wrap">{audit.additionalNotes}</p>
+          </div>
+        )}
       </div>
     </div>
   )
