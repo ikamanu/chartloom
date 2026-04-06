@@ -22,7 +22,7 @@ const formSchema = z.object({
       comment: z.string(),
     })
   ),
-  additionalNotes: z.string().optional().default(''),
+  additionalNotes: z.string(),
 })
 
 type FormValues = z.infer<typeof formSchema>

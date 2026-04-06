@@ -46,6 +46,7 @@ export function createAudit(header?: Partial<AuditHeader>): AuditRecord {
       selectedOption: null,
       comment: '',
     })),
+    additionalNotes: '',
     status: 'draft',
     createdAt: now,
     updatedAt: now,

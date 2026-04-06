@@ -6,6 +6,7 @@ import type { AuditHeader } from '@/lib/schemas'
 type FormValues = {
   header: Partial<AuditHeader>
   responses: { questionId: string; selectedOption: string | null; comment: string }[]
+  additionalNotes: string
 }
 
 type Props = {
